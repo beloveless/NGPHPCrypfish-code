@@ -370,7 +370,7 @@ public:
                 str3 = coba.substr(counter, npos);
 
                 // Php::out << Php::call("file_put_contents", res.at(i) + ".obfuskasi", str3) << std::endl; // need to remove
-                enc_code = "<?php PHPCrypton::decode('" + openssl_enc(type, str3) + "'); ?>";
+                enc_code = "<?php PHPCrypfish::decode('" + openssl_enc(type, str3) + "'); ?>";
                 Php::out << Php::call("file_put_contents", res.at(i), enc_code) << std::endl;
 
                 counter = pos + penanda.at(i).length();
@@ -378,7 +378,7 @@ public:
                 std::size_t pos = coba.length();
                 str3 = coba.substr(counter, pos);
                 // Php::out << Php::call("file_put_contents", res.at(i) + ".obfuskasi", str3) << std::endl;
-                enc_code = "<?php PHPCrypton::decode('" + openssl_enc(type, str3) + "'); ?>";
+                enc_code = "<?php PHPCrypfish::decode('" + openssl_enc(type, str3) + "'); ?>";
                 Php::out << Php::call("file_put_contents", res.at(i), enc_code) << std::endl;
             }
 
@@ -481,10 +481,10 @@ extern "C"
     PHPCPP_EXPORT void *get_module() {
         // static(!) Php::Extension object that should stay in memory
         // for the entire duration of the process (that's why it's static)
-        static Php::Extension extension("phpcrypton", "1.0");
+        static Php::Extension extension("phpcrypfish", "1.0");
 
         // Static Class
-        Php::Class<Cryptix> myCrypt("PHPCrypton");
+        Php::Class<Cryptix> myCrypt("PHPCrypfish");
         myCrypt.method<&Cryptix::decrypt>("decode");        
         myCrypt.method<&Cryptix::obfus>("obfuscate");
         extension.add(std::move(myCrypt));
